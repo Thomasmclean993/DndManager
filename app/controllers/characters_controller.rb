@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
     # This action uses query string parameters b/c it gets run by an HTTP GET request
     # but this does not make any difference to way in which the parameters are accessed. 
-    require "pry"
+    # require "pry"
     
     def index  
         @characters = Character.all
@@ -21,9 +21,9 @@ class CharactersController < ApplicationController
     #This action actually saves the information and checks validations
     def create
         @character = Character.new(character_params)
-        binding.pry
+        # binding.pry
         if @character.save
-            redirect_to @characters
+            redirect_to @character
         else
             render :new
         end
@@ -39,10 +39,17 @@ class CharactersController < ApplicationController
         @character = Character.find(params[:id])
 
         if @character.update(character_params)
-            redirect_to @character
+            redirect_to @characters
         else
             render :edit
         end 
+    end 
+    
+    def destroy
+        @characters = Character.find(params[:id])
+        @characters.destroy
+
+        redirect_to root_path
     end 
 
     private

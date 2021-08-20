@@ -3,6 +3,7 @@ class DmController < ApplicationController
         @dms = Dm.all 
         @players = Player.all
         @characters = Character.all
+        @campaigns = Campaign.all
     end 
 
     def show 
