@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_08_18_210526) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
+    t.integer "dm_player_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -43,6 +44,5 @@ ActiveRecord::Schema.define(version: 2021_08_18_210526) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "characters", "players"
   add_foreign_key "characters", "players"
 end

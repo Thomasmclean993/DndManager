@@ -16,7 +16,7 @@ class CampaignsController < ApplicationController
         @campaign = Campaign.new(campaign_paramas)
     
         if @campaign.save
-            redirect_to @campaigns
+            redirect_to root_path
         else  
             render :new
         end
@@ -29,8 +29,8 @@ class CampaignsController < ApplicationController
     def update
         @campaign = Campaign.find(params[:id])
 
-        if @campaign.update(character_params)
-            redirect_to @campaigns
+        if @campaign.update(campaign_params)
+            redirect_to root_path
         else 
             render :edit
         end
@@ -43,7 +43,7 @@ class CampaignsController < ApplicationController
     end 
 
     private
-    def campaign_paramas
+    def campaign_params
         params.require(:campaign).permit(:name)
     end
 end
