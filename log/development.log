@@ -22573,3 +22573,3222 @@ Processing by DmController#index as HTML
 Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.5ms | Allocations: 6545)
 
 
+Started GET "/" for ::1 at 2021-08-25 08:39:42 -0400
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.6ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.3ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 34.0ms | Allocations: 12951)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 58.0ms | Allocations: 18046)
+Completed 200 OK in 90ms (Views: 67.9ms | ActiveRecord: 3.2ms | Allocations: 23398)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWeapons (20210825124554)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "range" varchar, "hit_dc" varchar, "damage" varchar, "notes" text, "weight" varchar, "cost" varchar, "special" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210825124554"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2021-08-25 09:27:14 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  Rendered dm/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1909)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 1975)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 4309)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Game Master Landing Page</h1>
+
+<h2>Player Dashboard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of players</th>
+      <th>Player ID </th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.id %></td>
+        <td><%= link_to "Show", player %></td>
+        <td><%= link_to "Edit", edit_player_path(player) %></td>
+        <td><%= link_to "Destroy", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Player",new_player_path %><br>
+
+
+<h2>Character Anvil</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of PCs</th>
+      <th>Character's Owner </th>
+      <th>Character's Race</th>
+      <th>Character's level</th>
+      <th>Character's Class</th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td><%= character.name %></td>
+        <td><%= character.owner %></td>
+        <td><%= character.race %></td>
+        <td><%= character.level %></td>
+        <td><%= character.role %></td>
+        <td><%= link_to "Show", character %></td>
+        <td><%= link_to "Edit", edit_character_path(character) %></td>
+        <td><%= link_to "Destroy", character, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Character", new_character_path %><br>  
+
+
+<h2>Campaign WorkShop</h2>  
+<table>
+  <thead>
+    <th>Name of Campaign</th>
+    <th>Campaign's DM</th>
+    <th>Current Session</th>
+    <th>Player's in Session</th>
+    <th colspan="3" ></th>
+  </thead>
+
+<tbody>
+<% @campaigns.each do |campaign| %> 
+  <tr>
+  
+    <td><%=campaign.name %></td>
+    <td><%=campaign.dm_player_id %></td>
+    <%# <td><%=campaign.sessions %></td> 
+    <td><%# <%= link_to "New Session", new_session_path %>  </td>
+    <td><%= link_to "Show", campaign %> </td>
+    <td><%= link_to "Edit", edit_campaign_path(campaign) %> </td>
+    <td><%= link_to "Destroy", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td> 
+    </tr>
+    <% end %> 
+</table>
+ <br> 
+
+<%= link_to "Start a New Campaign", new_campaign_path %><br>  
+
+<h2> HomeBrew Table </h2>
+  <table>
+    <th><%= link_to "Weapon" ,weapons_path</th>
+    
+  #   <th><%= link_to "Item" , items_path </th>
+  #   <th><%= link_to "Armor" ,armors_path</th>
+  #   <th><%= link_to "Settlement" ,settlement_path</th>
+  #   <th><%= link_to "Organization" , organizations_path</th>
+  # </table> %>
+
+#<% Need to finish the      Dashboard  %>
+<%# Create buttons for creating items, religions and others. They will remain broken for now %>
+<%# There will be only the one campaign til stage 4 %>
+):
+1:    <h1>Game Master Landing Page</h1>
+2:    
+3:    <h2>Player Dashboard</h2>
+4:    <table>
+5:      <thead>
+6:        <tr>
+7:          <th>List of players</th>
+8:          <th>Player ID </th>
+9:          <th colspan="3" ></th>
+10:        </tr>
+11:      </thead>
+12:    
+13:      <tbody>
+14:        <% @players.each do |player| %>
+15:          <tr>
+16:            <td><%= player.name %></td>
+17:            <td><%= player.id %></td>
+18:            <td><%= link_to "Show", player %></td>
+19:            <td><%= link_to "Edit", edit_player_path(player) %></td>
+20:            <td><%= link_to "Destroy", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+21:          </tr>
+22:        <% end %>
+23:      </tbody>
+24:    </table>
+25:    
+26:    <br>
+27:    
+28:    <%= link_to "New Player",new_player_path %><br>
+29:    
+30:    
+31:    <h2>Character Anvil</h2>
+32:    <table>
+33:      <thead>
+34:        <tr>
+35:          <th>List of PCs</th>
+36:          <th>Character's Owner </th>
+37:          <th>Character's Race</th>
+38:          <th>Character's level</th>
+39:          <th>Character's Class</th>
+40:          <th colspan="3" ></th>
+41:        </tr>
+42:      </thead>
+43:    
+44:      <tbody>
+45:        <% @characters.each do |character| %>
+46:          <tr>
+47:            <td><%= character.name %></td>
+48:            <td><%= character.owner %></td>
+49:            <td><%= character.race %></td>
+50:            <td><%= character.level %></td>
+51:            <td><%= character.role %></td>
+52:            <td><%= link_to "Show", character %></td>
+53:            <td><%= link_to "Edit", edit_character_path(character) %></td>
+54:            <td><%= link_to "Destroy", character, method: :delete, data: { confirm: "Are you sure?" } %></td>
+55:          </tr>
+56:        <% end %>
+57:      </tbody>
+58:    </table>
+59:    
+60:    <br>
+61:    
+62:    <%= link_to "New Character", new_character_path %><br>  
+63:    
+64:    
+65:    <h2>Campaign WorkShop</h2>  
+66:    <table>
+67:      <thead>
+68:        <th>Name of Campaign</th>
+69:        <th>Campaign's DM</th>
+70:        <th>Current Session</th>
+71:        <th>Player's in Session</th>
+72:        <th colspan="3" ></th>
+73:      </thead>
+74:    
+75:    <tbody>
+76:    <% @campaigns.each do |campaign| %> 
+77:      <tr>
+78:      
+79:        <td><%=campaign.name %></td>
+80:        <td><%=campaign.dm_player_id %></td>
+81:        <%# <td><%=campaign.sessions %></td> 
+82:        <td><%# <%= link_to "New Session", new_session_path %>  </td>
+83:        <td><%= link_to "Show", campaign %> </td>
+84:        <td><%= link_to "Edit", edit_campaign_path(campaign) %> </td>
+85:        <td><%= link_to "Destroy", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td> 
+86:        </tr>
+87:        <% end %> 
+88:    </table>
+89:     <br> 
+90:    
+91:    <%= link_to "Start a New Campaign", new_campaign_path %><br>  
+92:    
+93:    <h2> HomeBrew Table </h2>
+94:      <table>
+95:        <th><%= link_to "Weapon" ,weapons_path</th>
+96:        
+97:      #   <th><%= link_to "Item" , items_path </th>
+98:      #   <th><%= link_to "Armor" ,armors_path</th>
+99:      #   <th><%= link_to "Settlement" ,settlement_path</th>
+100:      #   <th><%= link_to "Organization" , organizations_path</th>
+101:      # </table> %>
+102:    
+103:    #<% Need to finish the      Dashboard  %>
+104:    <%# Create buttons for creating items, religions and others. They will remain broken for now %>
+105:    <%# There will be only the one campaign til stage 4 %>
+  
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+app/views/dm/index.html.erb:97: unknown regexp options - th
+app/views/dm/index.html.erb:107: unterminated string meets end of file
+app/views/dm/index.html.erb:107: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/" for ::1 at 2021-08-25 09:28:06 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 21.1ms | Allocations: 10615)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 36.2ms | Allocations: 14212)
+Completed 200 OK in 40ms (Views: 37.9ms | ActiveRecord: 0.7ms | Allocations: 15363)
+
+
+Started GET "/" for ::1 at 2021-08-25 09:28:27 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 3353)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | Allocations: 6941)
+Completed 200 OK in 16ms (Views: 14.3ms | ActiveRecord: 0.4ms | Allocations: 8073)
+
+
+Started GET "/" for ::1 at 2021-08-25 09:28:56 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 3432)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | Allocations: 7020)
+Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.5ms | Allocations: 8165)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 09:28:57 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 720)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 09:29:03 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 2795)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 6216)
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 0.6ms | Allocations: 6643)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 09:29:26 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 637)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 09:31:44 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 17.7ms | Allocations: 7577)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 7641)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms | Allocations: 8749)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `index_weapons_path' for #<ActionView::Base:0x0000000000c170>
+Did you mean?  edit_weapon_path
+               new_weapon_path):
+    92: 
+    93: <h2> HomeBrew Table </h2>
+    94:   <table>
+    95:     <th><%= button_to "Weapon" ,index_weapons_path %></th>
+    96:   </table>
+    97:   
+  
+app/views/dm/index.html.erb:95
+Started GET "/" for ::1 at 2021-08-25 09:32:07 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 3427)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 7022)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.4ms | Allocations: 8165)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 09:59:42 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 09:59:45 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.5ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.3ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 15.7ms | Allocations: 4165)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 30.4ms | Allocations: 7759)
+Completed 200 OK in 34ms (Views: 32.4ms | ActiveRecord: 1.8ms | Allocations: 8895)
+
+
+Started GET "/characters/new" for ::1 at 2021-08-25 10:00:01 -0400
+Processing by CharactersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/new.html.erb within layouts/application
+  Rendered characters/_form.html.erb (Duration: 21.9ms | Allocations: 3814)
+  Rendered characters/new.html.erb within layouts/application (Duration: 24.3ms | Allocations: 4124)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 36.1ms | Allocations: 7594)
+Completed 200 OK in 40ms (Views: 38.5ms | ActiveRecord: 0.0ms | Allocations: 8497)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 10:00:11 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 2.8ms | Allocations: 3253)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 4.4ms | Allocations: 3551)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 3615)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.8ms | Allocations: 10025)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    2:     <div>
+    3:         <%= form.label :name %><br>
+    4:         <%= form.text_field :name %>
+    5:         <% weapon.errors.full_messages_for(:name).each do |message| %>
+    6:             <%= message %>
+    7:         <% end %>
+    8:     </div>
+  
+app/views/weapons/_form.html.erb:5
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/" for ::1 at 2021-08-25 10:07:22 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.6ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.4ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 10.9ms | Allocations: 3542)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.0ms | Allocations: 6964)
+Completed 200 OK in 25ms (Views: 24.6ms | ActiveRecord: 1.8ms | Allocations: 7392)
+
+
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:10:53 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 1.7ms | Allocations: 1746)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2048)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2113)
+Completed 500 Internal Server Error in 9ms (Allocations: 3193)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with model: weapon do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+        <%# <% weapon.errors.full_messages_for(:name).each do |message| %>
+            <%# <%= message %> %> %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :type %><br>
+        <%= form.text_field :type %>
+        <%# <% weapon.errors.full_messages_for(:type).each do |message| %> %>
+            <%# <%= message %> %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :range %><br>
+        <%= form.text_field :range %>
+        <% weapon.errors.full_messages_for(:range).each do |message| %>
+            <%= message %>
+        <% end %>>
+    </div>
+
+    <div>
+        <%= form.label :hit_dc%><br>
+        <%= form.text_field :hit_dc %>
+        <% weapon.errors.full_messages_for(:hit_dc).each do |message| %>
+            <%= message %>
+        <% end %>
+    <div>
+        <%= form.label :damage%><br>
+        <%= form.text_field :damage %>
+        <% weapon.errors.full_messages_for(:damage).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :notes%><br>
+        <%= form.text_field :notes %>
+    </div>
+
+    <div>
+        <%= form.label :weight%><br>
+        <%= form.text_field :weight %>
+    </div>
+
+    <div>
+        <%= form.label :cost %><br>
+        <%= form.text_field :cost %>
+    </div>
+
+    <div>
+        <%= form.label :special %><br>
+        <%= form.text_field :special %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
+):
+1:    <%= form_with model: weapon do |form| %>
+2:        <div>
+3:            <%= form.label :name %><br>
+4:            <%= form.text_field :name %>
+5:            <%# <% weapon.errors.full_messages_for(:name).each do |message| %>
+6:                <%# <%= message %> %> %>
+7:            <% end %>
+8:        </div>
+9:    
+10:        <div>
+11:            <%= form.label :type %><br>
+12:            <%= form.text_field :type %>
+13:            <%# <% weapon.errors.full_messages_for(:type).each do |message| %> %>
+14:                <%# <%= message %> %>
+15:            <% end %>
+16:        </div>
+17:    
+18:        <div>
+19:            <%= form.label :range %><br>
+20:            <%= form.text_field :range %>
+21:            <% weapon.errors.full_messages_for(:range).each do |message| %>
+22:                <%= message %>
+23:            <% end %>>
+24:        </div>
+25:    
+26:        <div>
+27:            <%= form.label :hit_dc%><br>
+28:            <%= form.text_field :hit_dc %>
+29:            <% weapon.errors.full_messages_for(:hit_dc).each do |message| %>
+30:                <%= message %>
+31:            <% end %>
+32:        <div>
+33:            <%= form.label :damage%><br>
+34:            <%= form.text_field :damage %>
+35:            <% weapon.errors.full_messages_for(:damage).each do |message| %>
+36:                <%= message %>
+37:            <% end %>
+38:        </div>
+39:    
+40:        <div>
+41:            <%= form.label :notes%><br>
+42:            <%= form.text_field :notes %>
+43:        </div>
+44:    
+45:        <div>
+46:            <%= form.label :weight%><br>
+47:            <%= form.text_field :weight %>
+48:        </div>
+49:    
+50:        <div>
+51:            <%= form.label :cost %><br>
+52:            <%= form.text_field :cost %>
+53:        </div>
+54:    
+55:        <div>
+56:            <%= form.label :special %><br>
+57:            <%= form.text_field :special %>
+58:        </div>
+59:    
+60:        <div>
+61:            <%= form.submit %>
+62:        </div>
+63:    <% end %>
+  
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/_form.html.erb:63: syntax error, unexpected `end', expecting end-of-input
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:11:28 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 5.1ms | Allocations: 5182)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 6.7ms | Allocations: 5481)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 5545)
+Completed 500 Internal Server Error in 13ms (Allocations: 6624)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    18:     <div>
+    19:         <%= form.label :range %><br>
+    20:         <%= form.text_field :range %>
+    21:         <% weapon.errors.full_messages_for(:range).each do |message| %>
+    22:             <%= message %>
+    23:         <% end %>>
+    24:     </div>
+  
+app/views/weapons/_form.html.erb:21
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:11:29 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 2.6ms | Allocations: 4519)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 4610)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 4674)
+Completed 500 Internal Server Error in 5ms (Allocations: 5043)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    18:     <div>
+    19:         <%= form.label :range %><br>
+    20:         <%= form.text_field :range %>
+    21:         <% weapon.errors.full_messages_for(:range).each do |message| %>
+    22:             <%= message %>
+    23:         <% end %>>
+    24:     </div>
+  
+app/views/weapons/_form.html.erb:21
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:11:36 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 2.6ms | Allocations: 4519)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 2.8ms | Allocations: 4610)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 4674)
+Completed 500 Internal Server Error in 4ms (Allocations: 5042)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    18:     <div>
+    19:         <%= form.label :range %><br>
+    20:         <%= form.text_field :range %>
+    21:         <% weapon.errors.full_messages_for(:range).each do |message| %>
+    22:             <%= message %>
+    23:         <% end %>>
+    24:     </div>
+  
+app/views/weapons/_form.html.erb:21
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:11:56 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 10.8ms | Allocations: 6147)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 21.8ms | Allocations: 6446)
+  Rendered layout layouts/application.html.erb (Duration: 29.2ms | Allocations: 6510)
+Completed 500 Internal Server Error in 36ms (Allocations: 7589)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    26:     <div>
+    27:         <%= form.label :hit_dc%><br>
+    28:         <%= form.text_field :hit_dc %>
+    29:         <% weapon.errors.full_messages_for(:hit_dc).each do |message| %>
+    30:             <%= message %>
+    31:         <% end %>
+    32:     <div>
+  
+app/views/weapons/_form.html.erb:29
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:11:56 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 5.0ms | Allocations: 5489)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 5.2ms | Allocations: 5580)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 5644)
+Completed 500 Internal Server Error in 6ms (Allocations: 6013)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    26:     <div>
+    27:         <%= form.label :hit_dc%><br>
+    28:         <%= form.text_field :hit_dc %>
+    29:         <% weapon.errors.full_messages_for(:hit_dc).each do |message| %>
+    30:             <%= message %>
+    31:         <% end %>
+    32:     <div>
+  
+app/views/weapons/_form.html.erb:29
+app/views/weapons/_form.html.erb:1
+app/views/weapons/new.html.erb:3
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:12:23 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 11.5ms | Allocations: 10389)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 13.6ms | Allocations: 10686)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 36.5ms | Allocations: 14183)
+Completed 200 OK in 42ms (Views: 39.9ms | Allocations: 15290)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:13:21 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:15:18 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:15:21 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:15:34 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:18:52 -0400
+Processing by WeaponsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:11:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 4.4ms | Allocations: 9657)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 4.5ms | Allocations: 9746)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 13071)
+Completed 200 OK in 23ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 19035)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:20:15 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 4.6ms | Allocations: 9058)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 9147)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 12463)
+Completed 200 OK in 12ms (Views: 11.7ms | ActiveRecord: 0.0ms | Allocations: 12859)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:20:16 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:22:01 -0400
+  
+ActionController::RoutingError (uninitialized constant WeaponController
+Did you mean?  WeaponsController):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:22:34 -0400
+Processing by WeaponsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:11:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 5.9ms | Allocations: 9658)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 6.2ms | Allocations: 9747)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.4ms | Allocations: 13072)
+Completed 200 OK in 44ms (Views: 25.6ms | ActiveRecord: 1.7ms | Allocations: 19655)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:22:48 -0400
+Processing by WeaponsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.1ms | Allocations: 9068)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 9157)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.8ms | Allocations: 12480)
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 0.0ms | Allocations: 12910)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:23:12 -0400
+Processing by WeaponsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:11:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 3.0ms | Allocations: 9658)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 9747)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 13064)
+Completed 200 OK in 21ms (Views: 9.7ms | ActiveRecord: 1.0ms | Allocations: 19592)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:23:43 -0400
+Processing by WeaponsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Long bow", "type"=>"Bow", "range"=>"20ft/60ft", "hit_dc"=>"+2", "damage"=>"1 d 8", "notes"=>"", "weight"=>"", "cost"=>"", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 5.4ms | Allocations: 9068)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 9157)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | Allocations: 12481)
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 12912)
+
+
+Started GET "/weapons" for ::1 at 2021-08-25 11:23:49 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1735)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1799)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 2306)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/weapons" for ::1 at 2021-08-25 11:24:25 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1432)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1496)
+Completed 500 Internal Server Error in 6ms (Allocations: 2216)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/weapon" for ::1 at 2021-08-25 11:24:29 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/weapon"):
+  
+Started GET "/" for ::1 at 2021-08-25 11:24:33 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.6ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.4ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.3ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 22.8ms | Allocations: 12575)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 32.0ms | Allocations: 15959)
+Completed 200 OK in 43ms (Views: 33.8ms | ActiveRecord: 3.0ms | Allocations: 17992)
+
+
+Started GET "/" for ::1 at 2021-08-25 11:24:34 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 7.3ms | Allocations: 2781)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | Allocations: 6194)
+Completed 200 OK in 15ms (Views: 13.9ms | ActiveRecord: 0.5ms | Allocations: 6622)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:24:36 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:24:44 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.3ms | Allocations: 9698)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 25.4ms | Allocations: 9787)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 32.4ms | Allocations: 13112)
+Completed 200 OK in 41ms (Views: 32.9ms | ActiveRecord: 0.8ms | Allocations: 18454)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:24:55 -0400
+Processing by WeaponsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.1ms | Allocations: 9066)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 7.7ms | Allocations: 9155)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | Allocations: 12471)
+Completed 200 OK in 21ms (Views: 19.7ms | ActiveRecord: 0.0ms | Allocations: 12901)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:25:06 -0400
+Processing by WeaponsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:11:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 5.1ms | Allocations: 9653)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 5.3ms | Allocations: 9742)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 13060)
+Completed 200 OK in 35ms (Views: 20.7ms | ActiveRecord: 1.3ms | Allocations: 19587)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:25:18 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:27:49 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/weapons" for ::1 at 2021-08-25 11:28:01 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1684)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1748)
+Completed 500 Internal Server Error in 6ms (Allocations: 3066)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/" for ::1 at 2021-08-25 11:28:07 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 28.5ms | Allocations: 12614)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 35.3ms | Allocations: 16173)
+Completed 200 OK in 61ms (Views: 53.0ms | ActiveRecord: 2.4ms | Allocations: 18209)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:28:09 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 11:28:12 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 2795)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | Allocations: 6216)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.4ms | Allocations: 6644)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:28:15 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapons_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/weapon/new" for ::1 at 2021-08-25 11:28:24 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/weapon/new"):
+  
+Started GET "/weapons/new" for ::1 at 2021-08-25 11:28:32 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 4.6ms | Allocations: 10307)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 5.8ms | Allocations: 10604)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 13929)
+Completed 200 OK in 25ms (Views: 12.4ms | ActiveRecord: 1.4ms | Allocations: 19396)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:28:41 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:30:56 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 11:32:53 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/" for ::1 at 2021-08-25 11:32:58 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 23.4ms | Allocations: 11953)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | Allocations: 15337)
+Completed 200 OK in 38ms (Views: 30.6ms | ActiveRecord: 2.7ms | Allocations: 17100)
+
+
+Started GET "/" for ::1 at 2021-08-25 11:32:59 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 2781)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 6194)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.4ms | Allocations: 6620)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:33:01 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 895)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 11:33:08 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 2780)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | Allocations: 6201)
+Completed 200 OK in 16ms (Views: 14.5ms | ActiveRecord: 0.5ms | Allocations: 6627)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:46:19 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 11:46:21 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 8.1ms | Allocations: 3526)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 6947)
+Completed 200 OK in 15ms (Views: 14.8ms | ActiveRecord: 0.8ms | Allocations: 7373)
+
+
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started POST "/weapons" for ::1 at 2021-08-25 11:50:02 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 11:50:06 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 11:50:07 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 2780)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | Allocations: 6201)
+Completed 200 OK in 18ms (Views: 16.7ms | ActiveRecord: 0.5ms | Allocations: 6627)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:50:08 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started GET "/" for ::1 at 2021-08-25 11:50:09 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 2780)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 6201)
+Completed 200 OK in 12ms (Views: 11.6ms | ActiveRecord: 0.4ms | Allocations: 6627)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:50:13 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 11:51:28 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:15:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.7ms | Allocations: 9547)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 8.1ms | Allocations: 9636)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.7ms | Allocations: 12947)
+Completed 200 OK in 39ms (Views: 18.7ms | ActiveRecord: 1.4ms | Allocations: 20329)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:51:37 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 6.9ms | Allocations: 8898)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 24.2ms | Allocations: 8987)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 33.5ms | Allocations: 12289)
+Completed 200 OK in 36ms (Views: 34.3ms | ActiveRecord: 0.0ms | Allocations: 13261)
+
+
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/weapons" for ::1 at 2021-08-25 11:52:21 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1432)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1496)
+Completed 500 Internal Server Error in 6ms (Allocations: 2402)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/weapon" for ::1 at 2021-08-25 11:52:29 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/weapon"):
+  
+Started GET "/weapons" for ::1 at 2021-08-25 11:52:35 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1470)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1534)
+Completed 500 Internal Server Error in 3ms (Allocations: 1893)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/" for ::1 at 2021-08-25 11:52:40 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 21.9ms | Allocations: 11953)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.6ms | Allocations: 15337)
+Completed 200 OK in 41ms (Views: 32.4ms | ActiveRecord: 2.5ms | Allocations: 16992)
+
+
+Started GET "/" for ::1 at 2021-08-25 11:52:42 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 2781)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 6194)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.4ms | Allocations: 6620)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:53:45 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:15:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.0ms | Allocations: 9547)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 9636)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | Allocations: 12947)
+Completed 200 OK in 34ms (Views: 16.1ms | ActiveRecord: 0.8ms | Allocations: 20236)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 11:53:55 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 6.5ms | Allocations: 8898)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 6.8ms | Allocations: 8987)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 12297)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.0ms | Allocations: 13266)
+
+
+Started GET "/weapons" for ::1 at 2021-08-25 11:55:10 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1727)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1791)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2883)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:             <th>Special Abilities </th>
+    13:         </tr>
+    14:         <tr>
+    15:             <% @Weapons.each do |weapon| %>
+    16:                 <td><%= weapon.name %></td>
+    17:                 <td><%= weapon.type%></td>
+    18:                 <td><%= weapon.range%></td>
+  
+app/views/weapons/index.html.erb:15
+Started GET "/weapons" for ::1 at 2021-08-25 11:55:36 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (1.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 946)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 22.0ms | Allocations: 4542)
+Completed 200 OK in 31ms (Views: 28.6ms | ActiveRecord: 1.1ms | Allocations: 5641)
+
+
+Started GET "/weapons" for ::1 at 2021-08-25 12:01:11 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  Rendered weapons/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1221)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | Allocations: 1286)
+Completed 500 Internal Server Error in 9ms (Allocations: 2789)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>The collection of Weapons</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Type of Weapon</th>
+            <th>Range</th>
+            <th>Hit/Dc</th>
+            <th>Damage</th>
+            <th>Notes</th>
+            <th>Weight</th>
+            <th>Cost</th>
+            <th>Special Abilities </th>
+        </tr>
+        <tr>
+            <% @weapons.each do |weapon| %>
+                <td><%= weapon.name %></td>
+                <td><%= weapon.type%></td>
+                <td><%= weapon.range%></td>
+                <td><%= weapon.hit_dc%></td>
+                <td><%= weapon.damage%></td>
+                <td><%= weapon.notes%></td> 
+                <td><%= weapon.weight%></td>
+                <td><%= weapon.cost%></td>
+                <td><%= weapon.special%></td>
+            <% end %>
+        </tr>
+    </table>
+<%= Button_to 'Create a Weapon', render :edit %>
+):
+1:    <h1>The collection of Weapons</h1>
+2:        <table>
+3:            <tr>
+4:                <th>Name</th>
+5:                <th>Type of Weapon</th>
+6:                <th>Range</th>
+7:                <th>Hit/Dc</th>
+8:                <th>Damage</th>
+9:                <th>Notes</th>
+10:                <th>Weight</th>
+11:                <th>Cost</th>
+12:                <th>Special Abilities </th>
+13:            </tr>
+14:            <tr>
+15:                <% @weapons.each do |weapon| %>
+16:                    <td><%= weapon.name %></td>
+17:                    <td><%= weapon.type%></td>
+18:                    <td><%= weapon.range%></td>
+19:                    <td><%= weapon.hit_dc%></td>
+20:                    <td><%= weapon.damage%></td>
+21:                    <td><%= weapon.notes%></td> 
+22:                    <td><%= weapon.weight%></td>
+23:                    <td><%= weapon.cost%></td>
+24:                    <td><%= weapon.special%></td>
+25:                <% end %>
+26:            </tr>
+27:        </table>
+28:    <%= Button_to 'Create a Weapon', render :edit %>
+  
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/views/weapons/index.html.erb:28: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+Started GET "/weapons" for ::1 at 2021-08-25 12:01:58 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/weapons/index.html.erb:15
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 2786)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 2850)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.5ms | Allocations: 3920)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_url):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 12:02:23 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 2058)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 2122)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.1ms | Allocations: 3192)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_path):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_url %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 12:02:25 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1794)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1858)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2218)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_path):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_url %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 12:02:36 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2061)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 2125)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.1ms | Allocations: 3195)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_url):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapon" for ::1 at 2021-08-25 12:05:09 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/weapon"):
+  
+Started GET "/" for ::1 at 2021-08-25 12:05:14 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 20.0ms | Allocations: 11853)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | Allocations: 15409)
+Completed 200 OK in 38ms (Views: 29.1ms | ActiveRecord: 1.8ms | Allocations: 17456)
+
+
+Started GET "/weapon/1" for ::1 at 2021-08-25 12:05:19 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/weapon/1"):
+  
+Started GET "/" for ::1 at 2021-08-25 12:05:24 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 2795)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 6216)
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.5ms | Allocations: 6656)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 12:05:26 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:47:in `weapon_params'
+app/controllers/weapons_controller.rb:15:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 12:05:52 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 10ms (Allocations: 3583)
+
+
+  
+NameError (undefined local variable or method `weapon_params' for #<WeaponsController:0x000000000325f0>
+Did you mean?  weapon_path):
+  
+app/controllers/weapons_controller.rb:15:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 12:06:22 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 5ms (Allocations: 3574)
+
+
+  
+NameError (undefined local variable or method `parama' for #<WeaponsController:0x000000000347b0>
+Did you mean?  params
+               params=
+               @_params):
+  
+app/controllers/weapons_controller.rb:15:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 12:06:32 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:15:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 4.8ms | Allocations: 10160)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 6.0ms | Allocations: 10457)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 13769)
+Completed 200 OK in 31ms (Views: 17.5ms | ActiveRecord: 1.4ms | Allocations: 21204)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 12:06:42 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 6.4ms | Allocations: 8900)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 8989)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 12294)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.0ms | Allocations: 13264)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 12:07:17 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"Longsword", "type"=>"Sword", "range"=>"5 ft ", "hit_dc"=>"+3", "damage"=>"1 d 10 +6", "notes"=>"Normal", "weight"=>"12 lb", "cost"=>"2 gold", "special"=>"", "commit"=>"Save "}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:15:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 12.1ms | Allocations: 9547)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 12.4ms | Allocations: 9636)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.8ms | Allocations: 12947)
+Completed 200 OK in 40ms (Views: 21.7ms | ActiveRecord: 1.7ms | Allocations: 20259)
+
+
+Started GET "/" for ::1 at 2021-08-25 12:26:53 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 37.4ms | Allocations: 11886)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 50.4ms | Allocations: 15269)
+Completed 200 OK in 59ms (Views: 51.4ms | ActiveRecord: 3.8ms | Allocations: 16959)
+
+
+Started GET "/" for ::1 at 2021-08-25 12:26:54 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 13.7ms | Allocations: 2781)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | Allocations: 6194)
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 0.5ms | Allocations: 6633)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 12:27:08 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 19.0ms | Allocations: 8898)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 19.3ms | Allocations: 8987)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | Allocations: 12290)
+Completed 200 OK in 34ms (Views: 32.0ms | ActiveRecord: 0.0ms | Allocations: 13259)
+
+
+Started GET "/" for ::1 at 2021-08-25 12:27:10 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 2783)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 6196)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.4ms | Allocations: 6635)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameTypeToWeaponType (20210825164234)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameTypeToWeaponType (20210825164234)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameTypeToWeaponType (20210825164234)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "weapon_types" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "hit_dc" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "notes" text DEFAULT NULL, "weight" varchar DEFAULT NULL, "cost" varchar DEFAULT NULL, "special" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","weapon_types","range","hit_dc","damage","notes","weight","cost","special","created_at","updated_at")
+                     SELECT "id","name","type","range","hit_dc","damage","notes","weight","cost","special","created_at","updated_at" FROM "weapons"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "weapon_types" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "hit_dc" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "notes" text DEFAULT NULL, "weight" varchar DEFAULT NULL, "cost" varchar DEFAULT NULL, "special" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","weapon_types","range","hit_dc","damage","notes","weight","cost","special","created_at","updated_at")
+                     SELECT "id","name","weapon_types","range","hit_dc","damage","notes","weight","cost","special","created_at","updated_at" FROM "aweapons"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210825164234"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "campaigns"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "campaigns" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "dm_player_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "characters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "owner" varchar, "race" varchar, "role" text, "level" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer, "campaign_id" integer)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE INDEX "index_characters_on_player_id" ON "characters" ("player_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "dms"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "dms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "players"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "weapons"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "weapon_types" varchar, "range" varchar, "hit_dc" varchar, "damage" varchar, "notes" text, "weight" varchar, "cost" varchar, "special" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acharacters" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "owner" varchar DEFAULT NULL, "race" varchar DEFAULT NULL, "role" text DEFAULT NULL, "level" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer DEFAULT NULL, "campaign_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_acharacters_on_player_id" ON "acharacters" ("player_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acharacters" ("id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id")
+                     SELECT "id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id" FROM "characters"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "characters"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "characters" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "owner" varchar DEFAULT NULL, "race" varchar DEFAULT NULL, "role" text DEFAULT NULL, "level" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer DEFAULT NULL, "campaign_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_2f5bb96dfc"
+FOREIGN KEY ("player_id")
+  REFERENCES "players" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_characters_on_player_id" ON "characters" ("player_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "characters" ("id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id")
+                     SELECT "id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id" FROM "acharacters"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acharacters"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210825164234)[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210804180921),
+(20210804181416),
+(20210805185647),
+(20210806171042),
+(20210811145008),
+(20210817171438),
+(20210817173104),
+(20210818210526),
+(20210825124554);
+
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-25 16:52:14.675044"], ["updated_at", "2021-08-25 16:52:14.675044"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "2f521b9704a6304dc6383c517fcd4a502ba12a4f"], ["created_at", "2021-08-25 16:52:14.681232"], ["updated_at", "2021-08-25 16:52:14.681232"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "campaigns"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "campaigns" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "dm_player_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "characters" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "owner" varchar, "race" varchar, "role" text, "level" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer, "campaign_id" integer)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_characters_on_player_id" ON "characters" ("player_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "dms"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "dms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "players"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "players" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "weapons"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "weapon_types" varchar, "range" varchar, "hit_dc" varchar, "damage" varchar, "notes" text, "weight" varchar, "cost" varchar, "special" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acharacters" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "owner" varchar DEFAULT NULL, "race" varchar DEFAULT NULL, "role" text DEFAULT NULL, "level" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer DEFAULT NULL, "campaign_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_acharacters_on_player_id" ON "acharacters" ("player_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "acharacters" ("id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id")
+                     SELECT "id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id" FROM "characters"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "characters"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "characters" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "owner" varchar DEFAULT NULL, "race" varchar DEFAULT NULL, "role" text DEFAULT NULL, "level" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "player_id" integer DEFAULT NULL, "campaign_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_2f5bb96dfc"
+FOREIGN KEY ("player_id")
+  REFERENCES "players" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_characters_on_player_id" ON "characters" ("player_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "characters" ("id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id")
+                     SELECT "id","name","owner","race","role","level","created_at","updated_at","player_id","campaign_id" FROM "acharacters"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acharacters"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210825164234)[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210804180921),
+(20210804181416),
+(20210805185647),
+(20210806171042),
+(20210811145008),
+(20210817171438),
+(20210817173104),
+(20210818210526),
+(20210825124554);
+
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-25 16:52:14.723883"], ["updated_at", "2021-08-25 16:52:14.723883"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-08-25 16:52:14.728592"], ["key", "environment"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "2f521b9704a6304dc6383c517fcd4a502ba12a4f"], ["created_at", "2021-08-25 16:52:14.733694"], ["updated_at", "2021-08-25 16:52:14.733694"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started POST "/weapons" for ::1 at 2021-08-25 13:01:08 -0400
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 3.8ms | Allocations: 10159)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 4.7ms | Allocations: 10463)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 13946)
+Completed 200 OK in 26ms (Views: 14.3ms | ActiveRecord: 0.0ms | Allocations: 20671)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:01:10 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.4ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.4ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 2738)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 6114)
+Completed 200 OK in 18ms (Views: 11.9ms | ActiveRecord: 1.0ms | Allocations: 8185)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:01:12 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 3.6ms | Allocations: 8907)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 8996)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 12299)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.0ms | Allocations: 13268)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:01:13 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 2051)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 5464)
+Completed 200 OK in 13ms (Views: 11.7ms | ActiveRecord: 0.6ms | Allocations: 5904)
+
+
+Started GET "/players/new" for ::1 at 2021-08-25 13:02:46 -0400
+Processing by PlayersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering players/new.html.erb within layouts/application
+  Rendered players/_form.html.erb (Duration: 3.1ms | Allocations: 793)
+  Rendered players/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1176)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | Allocations: 4552)
+Completed 200 OK in 22ms (Views: 17.6ms | ActiveRecord: 0.0ms | Allocations: 7393)
+
+
+Started POST "/players" for ::1 at 2021-08-25 13:02:49 -0400
+Processing by PlayersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "player"=>{"name"=>"Joel"}, "commit"=>"Create Player"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/players_controller.rb:17:in `create'
+  [1m[36mPlayer Create (1.2ms)[0m  [1m[32mINSERT INTO "players" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Joel"], ["created_at", "2021-08-25 17:02:49.399951"], ["updated_at", "2021-08-25 17:02:49.399951"]]
+  ↳ app/controllers/players_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/players_controller.rb:17:in `create'
+Redirected to http://localhost:3000/players/1
+Completed 302 Found in 8ms (ActiveRecord: 2.3ms | Allocations: 2589)
+
+
+Started GET "/players/1" for ::1 at 2021-08-25 13:02:49 -0400
+Processing by PlayersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering players/show.html.erb within layouts/application
+  Rendered players/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 254)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3679)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.2ms | Allocations: 5112)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:02:50 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 2651)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | Allocations: 6218)
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 0.5ms | Allocations: 6662)
+
+
+Started GET "/characters/new" for ::1 at 2021-08-25 13:02:52 -0400
+Processing by CharactersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/new.html.erb within layouts/application
+  Rendered characters/_form.html.erb (Duration: 4.3ms | Allocations: 1677)
+  Rendered characters/new.html.erb within layouts/application (Duration: 7.2ms | Allocations: 2489)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | Allocations: 5954)
+Completed 200 OK in 28ms (Views: 19.4ms | ActiveRecord: 0.0ms | Allocations: 10497)
+
+
+Started POST "/characters" for ::1 at 2021-08-25 13:03:11 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "character"=>{"name"=>"Ren", "owner"=>"Joel", "race"=>"Elf", "role"=>"Ranger", "level"=>"1"}, "commit"=>"Create Character"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+  [1m[36mCharacter Create (0.5ms)[0m  [1m[32mINSERT INTO "characters" ("name", "owner", "race", "role", "level", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ren"], ["owner", "Joel"], ["race", "Elf"], ["role", "Ranger"], ["level", 1], ["created_at", "2021-08-25 17:03:11.924474"], ["updated_at", "2021-08-25 17:03:11.924474"]]
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+Redirected to http://localhost:3000/characters/1
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms | Allocations: 2493)
+
+
+Started GET "/characters/1" for ::1 at 2021-08-25 13:03:11 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/characters_controller.rb:14:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering characters/show.html.erb within layouts/application
+  Rendered characters/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 291)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 3708)
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 0.2ms | Allocations: 4866)
+
+
+Started GET "/characters" for ::1 at 2021-08-25 13:03:13 -0400
+Processing by CharactersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/index.html.erb within layouts/application
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/characters/index.html.erb:4
+  Rendered characters/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 889)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.2ms | Allocations: 4932)
+Completed 200 OK in 26ms (Views: 24.9ms | ActiveRecord: 0.1ms | Allocations: 5444)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:03:15 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 2276)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.5ms | Allocations: 6320)
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.6ms | Allocations: 6764)
+
+
+Started GET "/campaigns/new" for ::1 at 2021-08-25 13:03:18 -0400
+Processing by CampaignsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campaigns/new.html.erb within layouts/application
+  Rendered campaigns/_form.html.erb (Duration: 4.7ms | Allocations: 1402)
+  Rendered campaigns/new.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1714)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 5168)
+Completed 200 OK in 32ms (Views: 26.6ms | ActiveRecord: 0.0ms | Allocations: 8373)
+
+
+Started POST "/campaigns" for ::1 at 2021-08-25 13:03:27 -0400
+Processing by CampaignsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "campaign"=>{"name"=>"Pirate Raid", "dm_player_id"=>"Joel"}, "commit"=>"Create Campaign"}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3285)
+
+
+  
+NameError (undefined local variable or method `campaign_paramas' for #<CampaignsController:0x0000000003b650>
+Did you mean?  campaign_params):
+  
+app/controllers/campaigns_controller.rb:16:in `create'
+Started GET "/campaigns" for ::1 at 2021-08-25 13:03:54 -0400
+Processing by CampaignsController#index as HTML
+Completed 500 Internal Server Error in 3ms (Allocations: 2606)
+
+
+  
+NameError (uninitialized constant CampaignsController::Session):
+  
+app/controllers/campaigns_controller.rb:4:in `index'
+Started GET "/campaigns/new" for ::1 at 2021-08-25 13:05:44 -0400
+Processing by CampaignsController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/campaigns_controller.rb:12:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering campaigns/new.html.erb within layouts/application
+  Rendered campaigns/_form.html.erb (Duration: 2.9ms | Allocations: 952)
+  Rendered campaigns/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1041)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 4463)
+Completed 200 OK in 30ms (Views: 19.7ms | ActiveRecord: 0.8ms | Allocations: 7942)
+
+
+Started GET "/campaigns" for ::1 at 2021-08-25 13:05:54 -0400
+Processing by CampaignsController#index as HTML
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 2393)
+
+
+  
+NameError (uninitialized constant CampaignsController::Session):
+  
+app/controllers/campaigns_controller.rb:4:in `index'
+Started GET "/campaigns" for ::1 at 2021-08-25 13:06:14 -0400
+Processing by CampaignsController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2393)
+
+
+  
+NameError (uninitialized constant CampaignsController::Session):
+  
+app/controllers/campaigns_controller.rb:4:in `index'
+Started GET "/campaigns" for ::1 at 2021-08-25 13:06:36 -0400
+Processing by CampaignsController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2393)
+
+
+  
+NameError (uninitialized constant CampaignsController::Session):
+  
+app/controllers/campaigns_controller.rb:4:in `index'
+Started GET "/campaign" for ::1 at 2021-08-25 13:06:41 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/campaign"):
+  
+Started GET "/" for ::1 at 2021-08-25 13:08:24 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.5ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.5ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 32.5ms | Allocations: 8360)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 52.0ms | Allocations: 11744)
+Completed 200 OK in 64ms (Views: 49.9ms | ActiveRecord: 4.0ms | Allocations: 13599)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:08:26 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 2260)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 5673)
+Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 0.4ms | Allocations: 6113)
+
+
+Started GET "/campaigns/new" for ::1 at 2021-08-25 13:08:33 -0400
+Processing by CampaignsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campaigns/new.html.erb within layouts/application
+  Rendered campaigns/_form.html.erb (Duration: 2.8ms | Allocations: 888)
+  Rendered campaigns/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 978)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 21.8ms | Allocations: 5015)
+Completed 200 OK in 23ms (Views: 22.4ms | ActiveRecord: 0.0ms | Allocations: 5406)
+
+
+Started POST "/campaigns" for ::1 at 2021-08-25 13:08:37 -0400
+Processing by CampaignsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "campaign"=>{"name"=>"Pirate Raid", "dm_player_id"=>"Andrew"}, "commit"=>"Create Campaign"}
+[31mUnpermitted parameter: :dm_player_id[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+  [1m[36mCampaign Create (0.8ms)[0m  [1m[32mINSERT INTO "campaigns" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Pirate Raid"], ["created_at", "2021-08-25 17:08:37.945376"], ["updated_at", "2021-08-25 17:08:37.945376"]]
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 1.9ms | Allocations: 2326)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:08:37 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 9.3ms | Allocations: 2371)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | Allocations: 5784)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.6ms | Allocations: 6224)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:08:58 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:15:in `create'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.3ms | Allocations: 10457)
+
+
+  
+NoMethodError (undefined method `type' for #<Weapon:0x00007f9c16c3ec68>):
+  
+app/controllers/weapons_controller.rb:17:in `create'
+Started POST "/weapons" for ::1 at 2021-08-25 13:14:54 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms | Allocations: 9200)
+
+
+  
+NoMethodError (undefined method `type' for #<Weapon:0x00007f9c12ba9680>):
+  
+app/controllers/weapons_controller.rb:17:in `create'
+Started GET "/" for ::1 at 2021-08-25 13:14:59 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 27.2ms | Allocations: 11234)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 42.6ms | Allocations: 14790)
+Completed 200 OK in 59ms (Views: 42.6ms | ActiveRecord: 3.0ms | Allocations: 17081)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:14:59 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 2374)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | Allocations: 5787)
+Completed 200 OK in 15ms (Views: 13.9ms | ActiveRecord: 0.5ms | Allocations: 6227)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:15:01 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 4174)
+
+
+  
+NoMethodError (undefined method `type' for #<Weapon:0x00007f9c1787edc0>):
+  
+app/controllers/weapons_controller.rb:17:in `create'
+Started GET "/weapons" for ::1 at 2021-08-25 13:16:28 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/weapons/index.html.erb:15
+  [1m[36mWeapon Load (0.4ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2744)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 2808)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.8ms | Allocations: 4113)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_url):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 13:16:51 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.3ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1794)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1858)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 2218)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_url):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 13:16:59 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1794)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1858)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.1ms | Allocations: 2217)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"edit", :controller=>"weapons"}, missing required keys: [:id]
+Did you mean?  edit_weapon_url):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', edit_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 13:19:46 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 11.5ms | Allocations: 4875)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 4939)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.2ms | Allocations: 6009)
+
+
+  
+ActionView::Template::Error (undefined method `Button_to' for #<ActionView::Base:0x00000000046578>
+Did you mean?  button_tag):
+    25:             <% end %>
+    26:         </tr>
+    27:     </table>
+    28: <%= Button_to 'Create a Weapon', new_weapon_path %>
+  
+app/views/weapons/index.html.erb:28
+Started GET "/weapons" for ::1 at 2021-08-25 13:20:13 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1022)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 27.5ms | Allocations: 4616)
+Completed 200 OK in 33ms (Views: 31.4ms | ActiveRecord: 0.2ms | Allocations: 5714)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 13:20:19 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 13:23:10 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/weapons" for ::1 at 2021-08-25 13:23:27 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 759)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 4180)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.2ms | Allocations: 4568)
+
+
+Started GET "/weapons" for ::1 at 2021-08-25 13:24:41 -0400
+Processing by WeaponsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/index.html.erb within layouts/application
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/weapons/index.html.erb:15
+  Rendered weapons/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 959)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 4554)
+Completed 200 OK in 15ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 5653)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 13:24:42 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 8.4ms | Allocations: 10377)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 12.2ms | Allocations: 11143)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.9ms | Allocations: 14564)
+Completed 200 OK in 35ms (Views: 24.6ms | ActiveRecord: 1.0ms | Allocations: 20281)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 13:26:36 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 7.8ms | Allocations: 9118)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 9414)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 12903)
+Completed 200 OK in 23ms (Views: 21.5ms | ActiveRecord: 0.0ms | Allocations: 14004)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 13:26:43 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/weapons/new" for ::1 at 2021-08-25 13:27:54 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 17.8ms | Allocations: 8580)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 18.1ms | Allocations: 8669)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 27.6ms | Allocations: 11993)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.0ms | Allocations: 12389)
+
+
+Started GET "/weapons/new" for ::1 at 2021-08-25 13:29:36 -0400
+Processing by WeaponsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 30.5ms | Allocations: 9625)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 31.8ms | Allocations: 9922)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 43.8ms | Allocations: 13422)
+Completed 200 OK in 50ms (Views: 47.6ms | ActiveRecord: 0.0ms | Allocations: 14529)
+
+
+Started POST "/weapons/new" for ::1 at 2021-08-25 13:29:54 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started POST "/weapons/new" for ::1 at 2021-08-25 13:31:51 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/weapons/new"):
+  
+Started GET "/" for ::1 at 2021-08-25 13:31:56 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.5ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 31.3ms | Allocations: 12126)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 45.1ms | Allocations: 15682)
+Completed 200 OK in 57ms (Views: 48.5ms | ActiveRecord: 3.5ms | Allocations: 17952)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:31:56 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2374)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 5787)
+Completed 200 OK in 16ms (Views: 15.0ms | ActiveRecord: 0.5ms | Allocations: 6227)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:31:58 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 8.4ms | Allocations: 5252)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 9.8ms | Allocations: 5549)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 8885)
+Completed 200 OK in 22ms (Views: 20.6ms | ActiveRecord: 0.0ms | Allocations: 10408)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:32:31 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "weapon"=>{"name"=>"longsword", "weapon_types"=>"sword", "range"=>"5 ft", "hit_dc"=>"+3", "damage"=>"1 d 10 ", "notes"=>"", "weight"=>"", "cost"=>"", "special"=>""}, "commit"=>"Create Weapon"}
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 8.1ms | Allocations: 4213)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 4302)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | Allocations: 7637)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.0ms | Allocations: 8605)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:33:40 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "weapon"=>{"name"=>"longsword", "weapon_types"=>"sword", "range"=>"5 ft", "hit_dc"=>"+3", "damage"=>"1 d 10 ", "notes"=>"", "weight"=>"", "cost"=>"", "special"=>""}, "commit"=>"Create Weapon"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ (pry):1:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 11.0ms | Allocations: 4287)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 11.3ms | Allocations: 4376)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 28.4ms | Allocations: 7720)
+Completed 200 OK in 170745ms (Views: 30.3ms | ActiveRecord: 1.4ms | Allocations: 43636)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:36:44 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "weapon"=>{"name"=>"longsword", "weapon_types"=>"sword", "range"=>"5 ft", "hit_dc"=>"+3", "damage"=>"1 d 10 ", "notes"=>"", "weight"=>"", "cost"=>"", "special"=>""}, "commit"=>"Create Weapon"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ (pry):5:in `create'
+[31mUnpermitted parameters: :hit_dc, :notes, :weight, :cost, :special[0m
+  Rendering layout layouts/application.html.erb
+  Rendering weapons/new.html.erb within layouts/application
+  Rendered weapons/_form.html.erb (Duration: 6.5ms | Allocations: 4284)
+  Rendered weapons/new.html.erb within layouts/application (Duration: 6.7ms | Allocations: 4373)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | Allocations: 7717)
+Completed 200 OK in 205271ms (Views: 15.0ms | ActiveRecord: 1.9ms | Allocations: 46757)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:40:31 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "weapon"=>{"name"=>"longsword", "weapon_types"=>"sword", "range"=>"5 ft", "hit_dc"=>"+3", "damage"=>"1 d 10 ", "notes"=>"", "weight"=>"", "cost"=>"", "special"=>""}, "commit"=>"Create Weapon"}
+[31mUnpermitted parameters: :hit_dc, :notes, :weight, :cost, :special[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/weapons_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/weapons_controller.rb:18:in `create'
+  [1m[36mWeapon Create (1.6ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_types", "range", "damage", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "longsword"], ["weapon_types", "sword"], ["range", "5 ft"], ["damage", "1 d 10 "], ["created_at", "2021-08-25 17:40:31.624276"], ["updated_at", "2021-08-25 17:40:31.624276"]]
+  ↳ app/controllers/weapons_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/weapons_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 35ms (ActiveRecord: 6.1ms | Allocations: 8677)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:40:31 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.6ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.8ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 37.1ms | Allocations: 10554)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 47.5ms | Allocations: 13938)
+Completed 200 OK in 59ms (Views: 44.4ms | ActiveRecord: 5.1ms | Allocations: 15905)
+
+
+Started POST "/weapons" for ::1 at 2021-08-25 13:40:37 -0400
+Processing by WeaponsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: weapon
+Did you mean?  action
+               controller
+               authenticity_token):
+  
+app/controllers/weapons_controller.rb:48:in `weapon_params'
+app/controllers/weapons_controller.rb:16:in `create'
+Started GET "/" for ::1 at 2021-08-25 13:40:39 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  Rendered dm/index.html.erb within layouts/application (Duration: 9.4ms | Allocations: 2358)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 42.6ms | Allocations: 5779)
+Completed 200 OK in 45ms (Views: 43.1ms | ActiveRecord: 0.5ms | Allocations: 6218)
+
+
+Started GET "/" for ::1 at 2021-08-25 13:52:03 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  Rendered dm/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1737)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1802)
+Completed 500 Internal Server Error in 8ms (Allocations: 2925)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Game Master Landing Page</h1>
+
+<h2>Player Dashboard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of players</th>
+      <th>Player ID </th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.id %></td>
+        <td><%= link_to "Show", player %></td>
+        <td><%= link_to "Edit", edit_player_path(player) %></td>
+        <td><%= link_to "Destroy", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Player",new_player_path %><br>
+
+
+<h2>Character Anvil</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of PCs</th>
+      <th>Character's Owner </th>
+      <th>Character's Race</th>
+      <th>Character's level</th>
+      <th>Character's Class</th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td><%= character.name %></td>
+        <td><%= character.owner %></td>
+        <td><%= character.race %></td>
+        <td><%= character.level %></td>
+        <td><%= character.role %></td>
+        <td><%= link_to "Show", character %></td>
+        <td><%= link_to "Edit", edit_character_path(character) %></td>
+        <td><%= link_to "Destroy", character, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Character", new_character_path %><br>  
+
+
+<h2>Campaign WorkShop</h2>  
+<table>
+  <thead>
+    <th>Name of Campaign</th>
+    <th>Campaign's DM</th>
+    <th>Current Session</th>
+    <th>Player's in Session</th>
+    <th colspan="3" ></th>
+  </thead>
+
+<tbody>
+<% @campaigns.each do |campaign| %> 
+  <tr>
+  
+    <td><%=campaign.name %></td>
+    <td><%=campaign.dm_player_id %></td>
+    <%# <td><%=campaign.sessions %></td> 
+    <td><%# <%= link_to "New Session", new_session_path %>  </td>
+    <td><%= link_to "Show", campaign %> </td>
+    <td><%= link_to "Edit", edit_campaign_path(campaign) %> </td>
+    <td><%= link_to "Destroy", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td> 
+    </tr>
+    <% end %> 
+</table>
+ <br> 
+
+<%= link_to "Start a New Campaign", new_campaign_path %><br>  
+
+<h2> HomeBrew Table </h2>
+  <table>
+    <tr>
+      <th>Name of Weapon</th>
+      <th>Type of Weapon</th>
+      <th>Range</th>
+      <th>Weapon Damage</th>
+      <th>Notes</th>
+      <th>Weight</th>
+      <th>Cost</th>
+      <th>Special</th>
+    </tr>
+    <tr>
+    <% @weapons.each do |weapon| %>
+      <td><%= weapon.name%></td>
+      <td><%= weapon.weapon_types%></td>
+      <td><%= weapon.range%></td>
+      <td><%= weapon.damage%></td>
+      <td><%= weapon.notes%></td>
+      <td><%= weapon.weight%></td>
+      <td><%= weapon.cost%></td>
+      <td><%= weapon.special%></td>
+    </tr>
+  
+  </table>
+  
+  
+  <%= link_to "Weapons Collection" ,weapons_path %>
+):
+1:    <h1>Game Master Landing Page</h1>
+2:    
+3:    <h2>Player Dashboard</h2>
+4:    <table>
+5:      <thead>
+6:        <tr>
+7:          <th>List of players</th>
+8:          <th>Player ID </th>
+9:          <th colspan="3" ></th>
+10:        </tr>
+11:      </thead>
+12:    
+13:      <tbody>
+14:        <% @players.each do |player| %>
+15:          <tr>
+16:            <td><%= player.name %></td>
+17:            <td><%= player.id %></td>
+18:            <td><%= link_to "Show", player %></td>
+19:            <td><%= link_to "Edit", edit_player_path(player) %></td>
+20:            <td><%= link_to "Destroy", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+21:          </tr>
+22:        <% end %>
+23:      </tbody>
+24:    </table>
+25:    
+26:    <br>
+27:    
+28:    <%= link_to "New Player",new_player_path %><br>
+29:    
+30:    
+31:    <h2>Character Anvil</h2>
+32:    <table>
+33:      <thead>
+34:        <tr>
+35:          <th>List of PCs</th>
+36:          <th>Character's Owner </th>
+37:          <th>Character's Race</th>
+38:          <th>Character's level</th>
+39:          <th>Character's Class</th>
+40:          <th colspan="3" ></th>
+41:        </tr>
+42:      </thead>
+43:    
+44:      <tbody>
+45:        <% @characters.each do |character| %>
+46:          <tr>
+47:            <td><%= character.name %></td>
+48:            <td><%= character.owner %></td>
+49:            <td><%= character.race %></td>
+50:            <td><%= character.level %></td>
+51:            <td><%= character.role %></td>
+52:            <td><%= link_to "Show", character %></td>
+53:            <td><%= link_to "Edit", edit_character_path(character) %></td>
+54:            <td><%= link_to "Destroy", character, method: :delete, data: { confirm: "Are you sure?" } %></td>
+55:          </tr>
+56:        <% end %>
+57:      </tbody>
+58:    </table>
+59:    
+60:    <br>
+61:    
+62:    <%= link_to "New Character", new_character_path %><br>  
+63:    
+64:    
+65:    <h2>Campaign WorkShop</h2>  
+66:    <table>
+67:      <thead>
+68:        <th>Name of Campaign</th>
+69:        <th>Campaign's DM</th>
+70:        <th>Current Session</th>
+71:        <th>Player's in Session</th>
+72:        <th colspan="3" ></th>
+73:      </thead>
+74:    
+75:    <tbody>
+76:    <% @campaigns.each do |campaign| %> 
+77:      <tr>
+78:      
+79:        <td><%=campaign.name %></td>
+80:        <td><%=campaign.dm_player_id %></td>
+81:        <%# <td><%=campaign.sessions %></td> 
+82:        <td><%# <%= link_to "New Session", new_session_path %>  </td>
+83:        <td><%= link_to "Show", campaign %> </td>
+84:        <td><%= link_to "Edit", edit_campaign_path(campaign) %> </td>
+85:        <td><%= link_to "Destroy", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td> 
+86:        </tr>
+87:        <% end %> 
+88:    </table>
+89:     <br> 
+90:    
+91:    <%= link_to "Start a New Campaign", new_campaign_path %><br>  
+92:    
+93:    <h2> HomeBrew Table </h2>
+94:      <table>
+95:        <tr>
+96:          <th>Name of Weapon</th>
+97:          <th>Type of Weapon</th>
+98:          <th>Range</th>
+99:          <th>Weapon Damage</th>
+100:          <th>Notes</th>
+101:          <th>Weight</th>
+102:          <th>Cost</th>
+103:          <th>Special</th>
+104:        </tr>
+105:        <tr>
+106:        <% @weapons.each do |weapon| %>
+107:          <td><%= weapon.name%></td>
+108:          <td><%= weapon.weapon_types%></td>
+109:          <td><%= weapon.range%></td>
+110:          <td><%= weapon.damage%></td>
+111:          <td><%= weapon.notes%></td>
+112:          <td><%= weapon.weight%></td>
+113:          <td><%= weapon.cost%></td>
+114:          <td><%= weapon.special%></td>
+115:        </tr>
+116:      
+117:      </table>
+118:      
+119:      
+120:      <%= link_to "Weapons Collection" ,weapons_path %>
+  
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+app/views/dm/index.html.erb:122: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-08-25 13:54:12 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mPlayer Load (0.5ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.5ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (0.4ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 18.5ms | Allocations: 4512)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | Allocations: 8107)
+Completed 200 OK in 37ms (Views: 35.6ms | ActiveRecord: 3.5ms | Allocations: 9257)
+
+
+Started GET "/players/new" for ::1 at 2021-08-25 14:06:14 -0400
+Processing by PlayersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering players/new.html.erb within layouts/application
+  Rendered players/_form.html.erb (Duration: 3.7ms | Allocations: 714)
+  Rendered players/new.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1050)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 29.3ms | Allocations: 4520)
+Completed 200 OK in 37ms (Views: 33.5ms | Allocations: 5901)
+
+
+Started POST "/players" for ::1 at 2021-08-25 14:06:21 -0400
+Processing by PlayersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "player"=>{"name"=>"Jonah"}, "commit"=>"Create Player"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/players_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/players_controller.rb:17:in `create'
+  [1m[36mPlayer Create (1.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jonah"], ["created_at", "2021-08-25 18:06:21.106615"], ["updated_at", "2021-08-25 18:06:21.106615"]]
+  ↳ app/controllers/players_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/players_controller.rb:17:in `create'
+Redirected to http://localhost:3000/players/2
+Completed 302 Found in 13ms (ActiveRecord: 3.4ms | Allocations: 3060)
+
+
+Started GET "/players/2" for ::1 at 2021-08-25 14:06:21 -0400
+Processing by PlayersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlayer Load (0.3ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering players/show.html.erb within layouts/application
+  Rendered players/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 241)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 3658)
+Completed 200 OK in 12ms (Views: 8.6ms | ActiveRecord: 0.3ms | Allocations: 4800)
+
+
+Started GET "/characters" for ::1 at 2021-08-25 14:06:26 -0400
+Processing by CharactersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/index.html.erb within layouts/application
+  [1m[36mCharacter Load (0.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/characters/index.html.erb:4
+  Rendered characters/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 1403)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 22.9ms | Allocations: 4927)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.5ms | Allocations: 5808)
+
+
+Started GET "/" for ::1 at 2021-08-25 14:06:28 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.9ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (1.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 13.3ms | Allocations: 3106)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 51.3ms | Allocations: 7160)
+Completed 200 OK in 53ms (Views: 49.7ms | ActiveRecord: 2.5ms | Allocations: 7603)
+
+
+Started GET "/characters/new" for ::1 at 2021-08-25 14:06:32 -0400
+Processing by CharactersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/new.html.erb within layouts/application
+  Rendered characters/_form.html.erb (Duration: 5.0ms | Allocations: 1607)
+  Rendered characters/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 1927)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.1ms | Allocations: 5943)
+Completed 200 OK in 25ms (Views: 23.7ms | ActiveRecord: 0.0ms | Allocations: 6460)
+
+
+Started POST "/characters" for ::1 at 2021-08-25 14:07:55 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "character"=>{"name"=>"Andrew", "owner"=>"Jonah", "race"=>"Gnome", "role"=>"Novelist", "level"=>"1"}, "commit"=>"Create Character"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+  [1m[36mCharacter Create (1.1ms)[0m  [1m[32mINSERT INTO "characters" ("name", "owner", "race", "role", "level", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Andrew"], ["owner", "Jonah"], ["race", "Gnome"], ["role", "Novelist"], ["level", 1], ["created_at", "2021-08-25 18:07:55.031851"], ["updated_at", "2021-08-25 18:07:55.031851"]]
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/characters_controller.rb:25:in `create'
+Redirected to http://localhost:3000/characters/2
+Completed 302 Found in 10ms (ActiveRecord: 2.3ms | Allocations: 2477)
+
+
+Started GET "/characters/2" for ::1 at 2021-08-25 14:07:55 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/characters_controller.rb:14:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering characters/show.html.erb within layouts/application
+  Rendered characters/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 284)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 3701)
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 0.2ms | Allocations: 4851)
+
+
+Started GET "/characters" for ::1 at 2021-08-25 14:07:58 -0400
+Processing by CharactersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering characters/index.html.erb within layouts/application
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/characters/index.html.erb:4
+  Rendered characters/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 743)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.8ms | Allocations: 4789)
+Completed 200 OK in 25ms (Views: 24.4ms | ActiveRecord: 0.2ms | Allocations: 5180)
+
+
+Started GET "/" for ::1 at 2021-08-25 14:08:05 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.1ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 10.0ms | Allocations: 3159)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 54.5ms | Allocations: 7201)
+Completed 200 OK in 56ms (Views: 54.9ms | ActiveRecord: 0.6ms | Allocations: 7644)
+
+
+Started GET "/campaigns/new" for ::1 at 2021-08-25 14:08:18 -0400
+Processing by CampaignsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campaigns/new.html.erb within layouts/application
+  Rendered campaigns/_form.html.erb (Duration: 3.4ms | Allocations: 1212)
+  Rendered campaigns/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1502)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 4878)
+Completed 200 OK in 22ms (Views: 19.7ms | ActiveRecord: 0.0ms | Allocations: 5850)
+
+
+Started POST "/campaigns" for ::1 at 2021-08-25 14:08:32 -0400
+Processing by CampaignsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "campaign"=>{"name"=>"Star wars", "dm_player_id"=>"Thomas"}, "commit"=>"Create Campaign"}
+[31mUnpermitted parameter: :dm_player_id[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+  [1m[36mCampaign Create (0.6ms)[0m  [1m[32mINSERT INTO "campaigns" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Star wars"], ["created_at", "2021-08-25 18:08:32.559255"], ["updated_at", "2021-08-25 18:08:32.559255"]]
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/campaigns_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.5ms | Allocations: 2322)
+
+
+Started GET "/" for ::1 at 2021-08-25 14:08:32 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.2ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 3258)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 15.2ms | Allocations: 6683)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.6ms | Allocations: 7123)
+
+
+Started GET "/campaigns/2" for ::1 at 2021-08-25 14:08:40 -0400
+Processing by CampaignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCampaign Load (0.3ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns" WHERE "campaigns"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/campaigns_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering campaigns/show.html.erb within layouts/application
+  Rendered campaigns/_form.html.erb (Duration: 2.2ms | Allocations: 946)
+  Rendered campaigns/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1132)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 5170)
+Completed 200 OK in 29ms (Views: 24.8ms | ActiveRecord: 0.3ms | Allocations: 6311)
+
+
+Started DELETE "/players/1" for ::1 at 2021-08-25 14:08:57 -0400
+Processing by PlayersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players" WHERE "players"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/players_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/players_controller.rb:42:in `destroy'
+  [1m[36mPlayer Destroy (0.8ms)[0m  [1m[31mDELETE FROM "players" WHERE "players"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/players_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/players_controller.rb:42:in `destroy'
+Redirected to http://localhost:3000/
+Completed 302 Found in 12ms (ActiveRecord: 2.6ms | Allocations: 2526)
+
+
+Started GET "/" for ::1 at 2021-08-25 14:08:57 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 3157)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 26.8ms | Allocations: 6582)
+Completed 200 OK in 30ms (Views: 27.9ms | ActiveRecord: 0.7ms | Allocations: 7022)
+
+
+Started DELETE "/characters/1" for ::1 at 2021-08-25 14:09:01 -0400
+Processing by CharactersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mCharacter Load (0.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/characters_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/characters_controller.rb:50:in `destroy'
+  [1m[36mCharacter Destroy (0.7ms)[0m  [1m[31mDELETE FROM "characters" WHERE "characters"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/characters_controller.rb:50:in `destroy'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/characters_controller.rb:50:in `destroy'
+Redirected to http://localhost:3000/
+Completed 302 Found in 14ms (ActiveRecord: 2.8ms | Allocations: 2517)
+
+
+Started GET "/" for ::1 at 2021-08-25 14:09:01 -0400
+Processing by DmController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dm/index.html.erb within layouts/application
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT "players".* FROM "players"[0m
+  ↳ app/views/dm/index.html.erb:14
+  [1m[36mCharacter Load (0.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/views/dm/index.html.erb:45
+  [1m[36mCampaign Load (0.1ms)[0m  [1m[34mSELECT "campaigns".* FROM "campaigns"[0m
+  ↳ app/views/dm/index.html.erb:76
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT "weapons".* FROM "weapons"[0m
+  ↳ app/views/dm/index.html.erb:106
+  Rendered dm/index.html.erb within layouts/application (Duration: 12.7ms | Allocations: 3032)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 27.0ms | Allocations: 6446)
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 0.6ms | Allocations: 6885)
+
+

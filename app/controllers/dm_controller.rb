@@ -4,6 +4,7 @@ class DmController < ApplicationController
         @players = Player.all
         @characters = Character.all
         @campaigns = Campaign.all
+        @weapons = Weapon.all
     end 
 
     def show 

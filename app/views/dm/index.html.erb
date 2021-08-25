@@ -90,15 +90,32 @@
 
 <%= link_to "Start a New Campaign", new_campaign_path %><br>  
 
-<%# <h2> HomeBrew Table </h2>
+<h2> HomeBrew Table </h2>
   <table>
-    <th><%= link_to "Item" , items_path </th>
-    <th><%= link_to "Weapon" ,weapons_path</th>
-    <th><%= link_to "Armor" ,armors_path</th>
-    <th><%= link_to "Settlement" ,settlement_path</th>
-    <th><%= link_to "Organization" , organizations_path</th>
-  </table> %>
-
-<%# Need to finish the      Dashboard  %>
-<%# Create buttons for creating items, religions and others. They will remain broken for now %>
-<%# There will be only the one campaign til stage 4 %>
+    <tr>
+      <th>Name of Weapon</th>
+      <th>Type of Weapon</th>
+      <th>Range</th>
+      <th>Weapon Damage</th>
+      <th>Notes</th>
+      <th>Weight</th>
+      <th>Cost</th>
+      <th>Special</th>
+    </tr>
+    <tr>
+      <% @weapons.each do |weapon| %>
+        <td><%= weapon.name%></td>
+        <td><%= weapon.weapon_types%></td>
+        <td><%= weapon.range%></td>
+        <td><%= weapon.damage%></td>
+        <td><%= weapon.notes%></td>
+        <td><%= weapon.weight%></td>
+        <td><%= weapon.cost%></td>
+        <td><%= weapon.special%></td>
+      <% end %>
+    </tr>
+    
+  </table>
+  
+  
+  <%= link_to "Weapons Collection" , weapons_path %>

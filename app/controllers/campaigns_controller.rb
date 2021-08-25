@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
    def index
         @campaigns = Campaign.all
-        @sessions = Session.all
+    
    end 
 
     def show 
@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
     end
 
     def create 
-        @campaign = Campaign.new(campaign_paramas)
+        @campaign = Campaign.new(campaign_params)
     
         if @campaign.save
             redirect_to root_path

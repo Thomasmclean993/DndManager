@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_210526) do
+ActiveRecord::Schema.define(version: 2021_08_25_164234) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 2021_08_18_210526) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name"
+    t.string "weapon_types"
+    t.string "range"
+    t.string "hit_dc"
+    t.string "damage"
+    t.text "notes"
+    t.string "weight"
+    t.string "cost"
+    t.text "special"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
