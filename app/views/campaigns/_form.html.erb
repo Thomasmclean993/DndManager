@@ -1,0 +1,23 @@
+<%= form_with model: campaign do |form| %>
+    <div>
+        <%= form.label "Name of Campaign" %><br>
+        <%= form.text_field :name %>
+        <% campaign.errors.full_messages_for(:name).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :dm_player_id %><br>
+        <%= form.text_field :dm_player_id %>
+        <% campaign.errors.full_messages_for(:dm_player_id).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div>
+    <div>
+        <%= form.label "Active Players" %>
+        <%= options_for_select([@players]) %> Seems to be broken 
+    </div>
+    <%= form.submit %>
+<% end %>
+   

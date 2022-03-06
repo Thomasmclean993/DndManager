@@ -1,0 +1,38 @@
+<%= form_with model: character do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+        <% character.errors.full_messages_for(:name).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :owner %><br>
+        <%= form.text_field :owner %>
+        <% character.errors.full_messages_for(:owner).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        
+        <%= form.label :race %><br>
+        <%= form.text_field :race %>
+    </div>
+
+    <div>
+        <%= form.label :class %><br>
+        <%= form.text_field :role %>
+    </div>
+
+    <div>
+        <%= form.label :level %><br>
+        <%= form.text_field :level %>
+    </div>
+
+    <div>
+    <%= form.submit %>
+    </div>
+
+<% end %>

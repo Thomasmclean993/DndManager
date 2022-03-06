@@ -1,0 +1,127 @@
+<h1>Game Master Landing Page</h1>
+
+<h2>Player Dashboard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of players</th>
+      <th>Player ID </th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.id %></td>
+        <td><%= link_to "Show", player %></td>
+        <td><%= link_to "Edit", edit_player_path(player) %></td>
+        <td><%= link_to "Destroy", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Player",new_player_path %><br>
+
+
+<h2>Character Anvil</h2>
+<table>
+  <thead>
+    <tr>
+      <th>List of PCs</th>
+      <th>Character's Owner </th>
+      <th>Character's Race</th>
+      <th>Character's level</th>
+      <th>Character's Class</th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td><%= character.name %></td>
+        <td><%= character.owner %></td>
+        <td><%= character.race %></td>
+        <td><%= character.level %></td>
+        <td><%= character.role %></td>
+        <td><%= link_to "Show", character %></td>
+        <td><%= link_to "Edit", edit_character_path(character) %></td>
+        <td><%= link_to "Destroy", character, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Character", new_character_path %><br>  
+
+
+<h2>Campaign WorkShop</h2>  
+<table>
+  <thead>
+    <th>Name of Campaign</th>
+    <th>Campaign's DM</th>
+    <th>Current Session</th>
+    <th>Player's in Session</th>
+    <th colspan="3" ></th>
+  </thead>
+
+<tbody>
+<% @campaigns.each do |campaign| %> 
+  <tr>
+  
+    <td><%=campaign.name %></td>
+    <td><%=campaign.dm_player_id %></td>
+    <%# <td><%=campaign.sessions %></td> 
+    <td><%# <%= link_to "New Session", new_session_path %>  </td>
+    <td><%= link_to "Show", campaign %> </td>
+    <td><%= link_to "Edit", edit_campaign_path(campaign) %> </td>
+    <td><%= link_to "Destroy", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td> 
+    </tr>
+    <% end %> 
+</table>
+ <br> 
+
+<%= link_to "Start a New Campaign", new_campaign_path %><br>  
+
+<h2> HomeBrew Table </h2>
+<table>
+  <thead>
+    <th>Name of Weapon</th>
+    <th>Type of Weapon</th>
+    <th>Range</th>
+    <th>Weapon Damage</th>
+    <th>Notes</th>
+    <th>Weight</th>
+    <th>Cost</th>
+    <th>Special</th>
+    <th colspan ="3"></th>
+  </thead>
+  <tbody>
+    <% @weapons.each do |weapon| %>
+    <tr>
+    <td><%= weapon.name%></td>
+    <td><%= weapon.weapon_types%></td>
+    <td><%= weapon.range%></td>
+    <td><%= weapon.damage%></td>
+    <td><%= weapon.notes%></td>
+    <td><%= weapon.weight%></td>
+    <td><%= weapon.cost%></td>
+    <td><%= weapon.special%></td>
+    <td><%= link_to "Show", weapon %> </td>
+    <td><%= link_to "Edit", edit_weapon_path(weapon) %> </td>
+    <td><%= link_to "Destroy", weapon, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    <% end %>
+    </tr>
+  </tbody>
+    
+</table>
+  
+  
+  <%= link_to "Weapons Collection" , weapons_path %>

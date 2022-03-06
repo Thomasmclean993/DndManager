@@ -1,0 +1,18 @@
+<h1>Weapon Details</h1>
+
+<ul>
+
+    [Name of Weapon] = <%=@weapon.name %><br>
+    [Weapon Type] = <%= @weapon.weapon_types %><br>
+    [Range]<%= @weapon.range %><br>
+    [Damage]<%= @weapon.damage %><br>
+    [Notes]<%= @weapon.notes %><br>
+    [Weight]<%= @weapon.weight %><br>
+    [Cost of Purchase ]<%= @weapon.cost %><br>
+    [Special]<%=  @weapon.special %><br>
+
+</ul>
+
+<%= link_to 'Home', root_path, class: "btn-btn-primary" %>
+<%= link_to 'List of weapons', weapons_path, class: "btn-btn-primary" %>
+

@@ -1,0 +1,13 @@
+<h1>Characters</h1>
+
+<ul>
+  <% @characters.each do |character| %>
+    <li>
+       <a href="<%= character_path(character) %>"> 
+        <%= character.name %>
+        
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Home", root_path %>

@@ -1,0 +1,61 @@
+<%= form_with model: weapon do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+        <%# <% weapon.errors.full_messages_for(:name).each do |message| %>
+            <%# <%= message %> 
+        <%# <% end %> 
+    </div>
+
+    <div>
+        <%= form.label :weapon_types %><br>
+        <%= form.text_field :weapon_types %>
+        <%# <% weapon.errors.full_messages_for(:type).each do |message| %> 
+            <%# <%= message %> 
+        <%# <% end %>
+    </div>
+
+    <div>
+        <%= form.label :range %><br>
+        <%= form.text_field :range %>
+        <%# <% weapon.errors.full_messages_for(:range).each do |message| %>
+            <%# <%= message %> 
+        <%# <% end %> 
+    </div>
+
+    <div>
+        <%= form.label :hit_dc%><br>
+        <%= form.text_field :hit_dc %>
+    
+    <div>
+        <%= form.label :damage%><br>
+        <%= form.text_field :damage %>
+        <%# <% weapon.errors.full_messages_for(:damage).each do |message| %> 
+            <%# <%= message %> 
+        <%# <% end %> 
+    </div>
+
+    <div>
+        <%= form.label :notes%><br>
+        <%= form.text_field :notes %>
+    </div>
+
+    <div>
+        <%= form.label :weight%><br>
+        <%= form.text_field :weight %>
+    </div>
+
+    <div>
+        <%= form.label :cost %><br>
+        <%= form.text_field :cost %>
+    </div>
+
+    <div>
+        <%= form.label :special %><br>
+        <%= form.text_field :special %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

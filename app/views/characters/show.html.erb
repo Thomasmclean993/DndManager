@@ -1,0 +1,16 @@
+<h1>Character Sheet</h1>
+
+<ul>
+    <li><%=  @character.name %></li>
+    <li><%=  @character.owner %></li>
+    <li><%=  @character.race %></li>
+    <li><%=  @character.class %></li>
+    <li><%=  @character.level %></li>
+    
+</ul>
+
+<%= link_to 'Home', root_path, class: "btn-btn-primary" %>
+<%= link_to 'List of characters', characters_path, class: "btn-btn-primary" %>
+
+
+
